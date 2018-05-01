@@ -1,0 +1,283 @@
+/*
+css for edmonterrubio.com
+November 2017
+copyright 2017 Ed Monterrubio
+*/
+
+/* reset styles
+--------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+address, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+
+/* base elements
+--------------------------------- */
+* { box-sizing: border-box; }
+body { font-size:62.5%; color:#171614; font-family: Roboto, Helvetica, sans-serif; line-height:1.3; background:#ebebeb; }
+p {  margin:0 0 1.5em 0; font-size:12px; font-family:Roboto, Helvetica, sans-serif; }
+a { text-decoration: none; outline: none; color:#9E9E9E; }
+a:hover { outline: none; color:#0277BD; }
+a img { border:none; }
+ul, ol { list-style:none;  }
+::selection { background: #9E9E9E;  color:#fff; }
+::-moz-selection { background: #9E9E9E; color:#fff; }
+
+/* headings
+--------------------------------- */
+h1, h2, h3, h4, h5, h6 { font-weight:normal; color:#171614; font-size:2em; margin:20px 0 16px 0; }
+h1 { margin:0; }
+h2 { font-family: Roboto, Helvetica, sans-serif; color:#0277BD; font-weight:300;}
+h3 { margin-top:0; font: 15px Roboto, Helvetica, sans-serif; }
+h4, h5 { font-family: Roboto, Helvetica, sans-serif;}
+
+/* global classes
+--------------------------------- */
+.clearfix { content:''; display:table; clear:both; }
+.left {float:left;}
+.right {float:right;}
+.column {width:47%;}
+
+
+/* logos
+--------------------------------- */
+.autodesk_white {background:url('../imgs/logos/logo_autodesk_white.svg') left center no-repeat;}
+.adobe_white {background:url('../imgs/logos/logo_adobe_white.svg') left center no-repeat;}
+.google_white {background:url('../imgs/logos/logo_google_white.svg') left center no-repeat;}
+.google {background:url('../imgs/logos/logo_google.svg') left center no-repeat;}
+.ge {background:url('../imgs/logos/logo_ge.svg') left center no-repeat;}
+.percolate {background:url('../imgs/logos/logo_percolate.svg') left center no-repeat;}
+.adobe {background:url('../imgs/logos/logo_adobe.svg') left center no-repeat;}
+.autodesk {background:url('../imgs/logos/logo_autodesk.svg') left center no-repeat;}
+.wdi {background:url('../imgs/logos/logo_wdi.svg') left center no-repeat;}
+.facebook {background:url('../imgs/logos/logo_facebook.svg') left center no-repeat;}
+.disney {background:url('../imgs/logos/logo_disney.svg') left center no-repeat;}
+.disneyinteractive {background:url('../imgs/logos/logo_disneyinteractive.svg') left center no-repeat;}
+.sweetSpotDiabetes {background:url('../imgs/logos/logo_sweetSpot.png') left center no-repeat;}
+.fb_pie {background:url('../imgs/logos/logo_facebook_pie.svg') left center no-repeat;}
+.edutopia {background:url('../imgs/logos/logo_edutopia.svg') left center no-repeat;}
+.dcooking {background:url('../imgs/logos/logo_dcooking.svg') left center no-repeat;}
+.lululemon {background:url('../imgs/logos/logo_lululemon.svg') left center no-repeat;}
+.adidas {background:url('../imgs/logos/logo_adidas.svg') left center no-repeat;}
+
+
+/* PAGE LAYOUT
+--------------------------------------------------------------------------------------------------- */
+.page_wrapper { width:1230px; margin: 0 auto; position: relative;}
+
+/* header
+--------------------------------- */
+.main_header {width:99.89%; margin-left:2px; padding:50px 0 0 0; background-color:#171614;}
+.main_logo {width:480px; margin:0 auto;}
+.main_logo a {display:inline-block; color:#fff; font:32px Avenir, sans-serif; font-weight:200; letter-spacing:10px; text-transform:uppercase; }
+.main_logo a span {font-weight:500; display:block;}
+.siteName {border:5px solid #fff; padding:15px 15px 10px 20px;}
+.biline {font-size:18px; margin-top:20px; text-align:center;}
+
+.nav_wrapper {width:100%; background-color:#272622; margin-top:44px;}
+.main_nav {margin:0 auto; width:400px;}
+.main_nav li a {font-size:15px; font-weight:300; color:#fff; display:inline-block; transition:all .25s ease;}
+.main_nav li a:hover {background-color:#0277BD;}
+
+.main_nav>ul>li {float:left; margin:0; text-align:center; position:relative; border-left:6px solid #171614;}
+.main_nav>ul>li:last-of-type {margin-right:0; border-right:6px solid #171614;}
+.main_nav>ul>li>a {padding:10px 0; width:125px;}
+.main_nav>ul>li>a:after {border-bottom:4px solid #171614; width:100%; content:""; position:absolute; left:0; bottom:0px; transition:all .25s ease;}
+.main_nav>ul>li>a:hover:after {bottom:-4px;}
+.main_nav>ul>li>a.active {background-color:#0277BD; cursor:default; }
+.main_nav>ul>li>a.active:after {border-bottom:4px solid #171614; width:100%; content:""; position:absolute; left:0; bottom:-4px;}
+
+.sub_nav {width:190%; position:absolute; left:0; display:none; z-index:100; background-color:#272623; }
+.sub_nav>li { text-align:left; }
+.sub_nav>li>a {display:block; padding:8px 14px; border-top: 1px solid #171514;}
+
+/* footer
+--------------------------------- */
+footer {padding:10px 0 40px 0; margin-top:15px;}
+footer h2 {color:#171614; font-weight:normal;}
+.copyright { margin:30px 0 0 0; width: 100%; line-height: 3.25em; }
+.copyright img { margin-right: 10px; float: left; box-shadow:0 0 1px 1px rgba(255,255,255,0.25); border-radius:5px;}
+.copyright small { color: #171614; float: left; font-size: 12px; }
+
+/* social icons
+--------------------------------- */
+.social_icons {position:absolute; right:0; bottom:40px;}
+.social_icon {float:left; margin:0; padding:10px; transition:all .25s ease;}
+.social_icon a {width:20px; height:20px; display:block; text-indent:-9999px; position:relative;}
+.linkedin, .email, .twitter {display:block; transition:fill .25s ease;}
+.linkedin {width:20px; height:20px;}
+.email {width:20px; height:17px; margin-top:3px;}
+.twitter {width:22px; height:24px;}
+.social_icon .social_fill {fill:#545454;}
+.social_icon:hover .social_fill {fill:#0277BD;}
+
+
+/* HOMEPAGE
+------------------------------------------------------------------ */
+/* hero slider
+--------------------------------- */
+.hero_container { position: relative; margin-bottom:20px;}
+.window { height:450px; width: 1230px; overflow: hidden;position: relative; }
+.image_reel { position: absolute; top: 0; right: 0; }
+.hero { /*background-position: 50% 39px;   overflow: hidden; cursor:pointer;*/  position:relative; float:right; height:450px; }
+.hero_image {width:1230px; position:relative;}
+.hero_image img { width:750px;  position:absolute; top:11px; right:0;}
+
+.hero-content { position:absolute; bottom: 110px; padding-left:3px;}
+.hero_logo {margin-left:-2px;}
+.hero_sweetSpot{width:145px;}
+.hero_google{width:520px;}
+.hero_logo.marginBttm {margin-bottom:15px;}
+.hero-content p { font-size:15px; margin:7px 0 0 0;  }
+.hero a.case_study { display:inline-block; font-size: 16px; margin-top:20px; padding:10px 20px; color:#fff; background-color:#0277BD; border:1px solid #0277BD; transition: all 0.2s ease-out; }
+.hero a.case_study:hover {background-color:#0288D1; /*color:#171614;*/ border-color:#0277BD;}
+
+.hero-caption { background-color:#272623; width:100%; height:52px; position: absolute; bottom: 0; left:0; padding-left:16px;}
+.caption_logo {margin-top:8px; height:40px; width:200px; float:left;}
+.caption_logo.adobe_white {height:26px; margin-top:13px;}
+.caption_logo.autodesk_white {height:30px; margin-top:12px;}
+.caption_logo.google_white {height: 36px; margin-top:10px;}
+
+.paging { background-color:#272623; position:absolute; bottom:0; right:0; width:150px; z-index:100; text-align:center; height:50px; font-size:14px; padding-top:10px;}
+.paging a { padding:4px 9px 4px 10px; text-decoration:none; color:#fff; outline:none; display:inline-block;}
+.paging a:hover {color:#abc8e2;}
+.paging a.active { border-radius:16px; font-weight:bold; background:#0277BD; color:#fff; }
+
+
+
+/* project thumbnails
+--------------------------------- */
+.thumbnails a {color:#9F9F9F;}
+.thumbnails li { float: left; margin: 0 2.5% 2% 0; position: relative; width: 18%; overflow: hidden; border-radius:5px;}
+.thumbnails li img {width:100%; height:100%; display:block;}
+.thumbnails li:nth-child(5n) { margin-right: 0;}
+.thumbnails li .thumb_overlay { height: 100%; width: 100%; z-index: 3; position: absolute; top: 0; left: 0; background-color: #000; opacity:0; transition:all 0.3s ease; }
+.thumbnails li:hover .thumb_overlay { opacity:0.3;}
+
+.thumbnails li .project-info { width:100%; background-color: #0277BD; padding:15px;  position:absolute; bottom:-122px; left:0; z-index:5; transition:all 0.3s ease; }
+.thumbnails li:hover .project-info {bottom:0;}
+
+.thumbnails li .project-info h3 { color:#fff; font-family:Roboto,Helvetica,sans-serif; font-weight:300; font-size:1.65rem; line-height:2rem;}
+.thumbnails li .project-info p { margin:-5px 0 0 0; color:#abc8d2;}
+
+
+/* ABOUT PAGE
+------------------------------------------------------------------ */
+.about {overflow:auto;}
+.about section {border-bottom: 1px solid rgba(55,93,129,.5); padding:0 2px;}
+.about section:last-of-type {border-bottom:none;}
+.about p {font-size:15px; line-height:1.5em;}
+.school {border-bottom: 1px solid rgba(55,93,129,.5); margin-bottom:20px;}
+.school:last-of-type {border-bottom:none;}
+.school h3 {margin-bottom:2px; color:#0277BD; font-weight:500;}
+.school a {font-size:15px;}
+.school>p:first-of-type {margin:0;}
+
+.skills ul li, .specialties ul li { background-color:#0277BD;padding:6px 12px; border-radius:5px; margin-right:5px; display:inline-block; margin-bottom:7px; font-size:15px; color:#fff;}
+.skills ul, .specialties ul {margin-bottom:20px;}
+.mentor_wrapper {margin-top:20px;}
+.mentor {width:130px; display:inline-block;}
+.mentor_title {font-weight:bold;}
+
+
+/* RESUME PAGE
+------------------------------------------------------------------ */
+.resume {padding:0 2px; overflow:auto;}
+.resume h2 {margin-bottom:30px;}
+.resume p {font-size:15px; line-height:1.5em;}
+.employment {border-bottom: 1px solid rgba(55,93,129,.5); margin-bottom:20px;}
+.employment:last-of-type {border-bottom:none;}
+.employment_logo { display:inline-block; margin-bottom:15px; width:100%;}
+.employment_logo.google {height:38px;}
+.employment_logo.edutopia {height:38px;}
+.employment_logo.glef {height:50px;}
+.employment_logo.adobe {height:26px;}
+.employment_logo.autodesk {height:30px;}
+.employment_logo.chase {height:26px;}
+.employment_logo.disneyinteractive {height:40px;}
+.employment_logo.wdi {height:42px;}
+.employment_logo.kessler {height:45px;}
+.employment_logo.universal {height:20px;}
+.employment_logo.facebook {height:40px;}
+.employment_logo.percolate {height:30px;}
+.employment_logo.ge {height:60px;}
+.employment h3 {margin-bottom:2px;}
+.employment h4 {margin:0 0 0 0; font-size:20px;}
+.employment h5 {font-size:14px; font-weight:500; margin:0 0 0 0;}
+.employment p:first-of-type {color:#0277BD;}
+.employment .date {margin-bottom:1.5rem; font-size:14px;}
+ul.resume-list li { margin:0 0 1.5em 1.2em; font-size:15px; font-family:Roboto, Helvetica, sans-serif;}
+
+.resume .column:last-of-type {margin-top:70px;}
+.contract {margin-left:5px;}
+
+
+
+/* PROJECT PAGE
+------------------------------------------------------------------ */
+/***----------------- PROJECT PAGE -----------------***/
+.project_header {width:100%; margin:20px auto 10px auto; }
+.project_header h2 {margin-bottom:20px; margin-top:10px; color:#171614; font-size:3em; float:left;}
+.project_description {margin:70px 0 50px 0;}
+.project_summary { width: 1030px; float:right; padding: 0 60px 0 40px; border-left:1px solid #616161;}
+.project_summary p { font-size: 15px; line-height: 1.5em; margin-bottom:0px; color:#616161; }
+.project_summary h3 { font-size:18px; text-transform:capitalize; font-weight:400; color:#212121; }
+.logo_wrapper {width:200px; float:left; }
+.project_logo {height:34px; background-position:right center; margin-right:40px;}
+
+.project_logo.adobe {height:35px; margin-top:50px;}
+.project_logo.disney {height:60px; margin-top:35px;}
+.project_logo.google {height:50px; margin-top:54px;}
+.project_logo.gsx {height:50px; margin-top:54px;}
+.project_logo.lululemon {height:40px; margin-top:35px;}
+.project_logo.autodesk {height:35px; margin-top:50px;}
+.project_logo.universalOrlando {height:30px; margin-top:55px;}
+.project_logo.dcooking {height:55px; margin-top:40px;}
+.project_logo.edutopia {height:55px; margin-top:45px;}
+.project_logo.americaneagle {height:90px; margin-top:15px;}
+.project_logo.adidas {height:70px; margin-top:30px;}
+.project_logo.lego {height:90px; margin-top:20px;}
+.project_logo.kimberly {height:50px; margin-top:30px;}
+.project_logo.intel {height:70px; margin-top:20px;}
+.project_logo.ryanhomes {height:50px; margin-top:30px;}
+.project_logo.pacifichomes {width:260px; margin-top:35px;}
+.project_logo.fb_pie {height:130px; margin-top:0px;}
+.project_logo.percolate {margin-top:45px;}
+.project_logo.sweetSpotDiabetes {height:100px; margin-top:22px; background-size:contain;}
+
+ul.project_btns {float:right; margin:10px 0 20px 0;}
+ul.project_btns a {color:#171614;}
+ul.project_btns a li {display:inline-block; width:125px; padding:12px 0; margin-right:5px; text-align:center; font-size:15px; font-weight:300; background-color:#ebebeb; border:1px solid #171614; transition: all 0.2s ease-out;}
+ul.project_btns a li:hover {background-color:#171614; color:#fff;}
+ul.project_btns a:last-of-type li {margin-right:0;}
+ul.project_btns a li.project_btn_on {background-color:#171614; color:#fff; cursor:default;}
+
+.image_wrapper.small {margin:0 auto; width:980px;}
+.images li {margin-bottom:15px;}
+
+	/***--------- PROJECT GALLERY ---------***/
+	.image-holder img {width:100%; margin-bottom:30px;}
+
+	.gallery-holder { overflow: hidden; height:auto; padding-bottom:30px; }
+	#gallery { position: relative; height:auto; }
+	#loading { background: url('../imgs/loader-light.gif') no-repeat center center; position: absolute; top: 50%; left: 50%; margin-top:-32px; margin-left:-32px; height: 64px; width: 64px; }
+	.slideshow-container {margin-bottom:9px;}
+	#slideshow { width:1230px; height:764px; margin:0 auto; overflow: hidden; position:relative; text-align:center;}
+	#slideshow a img { width:1230px; margin-bottom:25px;}
+	#slideshow.sm_slides { height:700px; }
+	#slideshow.jonas_slides { height:564px; }
+	#slideshow.camprock_slides { height:608px; }
+	#slideshow.lego_slides { height:582px; }
+	#slideshow.sm_slides a img { width:980px; margin-bottom:25px;}
+	.transparent_gif {position:absolute; left:0; top:0; z-index:50; cursor:default;}
+
+
+	#thumbs { margin-top: 12px; float: right; }
+	#thumbs ul.thumbs { position: absolute; left: -9999px; overflow: hidden; }
+	#thumbs ul.thumbs.noscript { position: relative; left: 0; overflow: hidden; }
+
+	.pagination { padding-right: 10px }
+	.pagination a.arrow-links { display: none; }
+	.pagination a, .gallery-holder #thumbs .pagination span { color: #171614; font-size: 14px; font-weight: 700; padding:7px 9px 4px 10px; }
+	.pagination a.current, .gallery-holder #thumbs .pagination span.current { color:#fff; background: #0277BD; padding:4px 8px 4px 8px; border-radius:15px;}
+	.pagination a:hover, .gallery-holder #thumbs .pagination a:hover { color: #abc8e2; }
+
+	.appStore_btn {display:block; width:145px; height:50px; background:url('../imgs/appStore_badge.png') 0 0 no-repeat; background-size:cover; position:absolute; left:0px; bottom:200px;}
