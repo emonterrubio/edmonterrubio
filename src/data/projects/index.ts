@@ -11,6 +11,9 @@ export const projects: Record<string, ProjectContent> = {
   "google-one-benefits": googleOneBenefits,
 };
 
+export { legacyProjects, legacyProjectsBySlug } from "./legacy";
+
 // Re-export types for convenience
 export type { ProjectContent, ContentBlock, CustomSection } from "./types";
+export type { LegacyProject } from "./legacy";
 

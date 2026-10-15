@@ -5,7 +5,7 @@ interface ProjectCardProps {
   title: string;
   role: string;
   achievement: string;
-  year: string;
+  year?: string;
   company: string;
   imageSrc: string;
   imageAlt: string;

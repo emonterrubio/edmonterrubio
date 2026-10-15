@@ -7,7 +7,7 @@ import { AnimatedProjectHeader } from "@/components/sections/AnimatedProjectHead
 import { BoldText } from "@/components/sections/BoldText";
 import { InlineBoldText } from "@/components/sections/InlineBoldText";
 import { ContentRenderer } from "@/components/sections/ContentRenderer";
-import { projects } from "@/data/projects";
+import { projects, legacyProjectsBySlug } from "@/data/projects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -19,6 +19,38 @@ interface ProjectPageProps {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = projects[slug];
+  const legacyProject = legacyProjectsBySlug[slug];
+
+  if (legacyProject) {
+    return (
+      <div className="min-h-screen">
+        <Header />
+        <main className="w-full max-w-6xl mx-auto px-6 sm:px-12 md:px-16 py-8">
+          <Link
+            href="/"
+            className="text-base/5 font-bold text-blue-600 hover:text-blue-700 mb-8 inline-flex items-center gap-2 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back to Projects
+          </Link>
+
+          <article className="space-y-12">
+            <AnimatedProjectHeader
+              title={legacyProject.title}
+              subtitle={[legacyProject.role, legacyProject.company, legacyProject.year].filter(Boolean).join(" · ")}
+              imageSrc={legacyProject.imageSrc}
+              imageAlt={legacyProject.imageAlt}
+            />
+
+            <ProjectSection title="Overview">
+              <BoldText text={legacyProject.description} />
+            </ProjectSection>
+          </article>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!project) {
     notFound();

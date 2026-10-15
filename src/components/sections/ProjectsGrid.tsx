@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { ProjectCard } from "./ProjectCard";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { legacyProjects } from "@/data/projects/legacy";
 
 const projects = [
   {
@@ -69,22 +71,67 @@ const cardVariants = {
 };
 
 export const ProjectsGrid = () => {
+  const [showLegacy, setShowLegacy] = useState(false);
+
   return (
-    <motion.section 
-      className="w-full max-w-6xl mx-auto py-12"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={containerVariants}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project, index) => (
-          <motion.div key={project.slug} variants={cardVariants}>
-            <ProjectCard {...project} />
-          </motion.div>
-        ))}
+    <>
+      <motion.section 
+        className="w-full max-w-6xl mx-auto py-12"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <motion.div key={project.slug} variants={cardVariants}>
+              <ProjectCard {...project} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      <AnimatePresence initial={false}>
+        {showLegacy && (
+          <motion.section
+            id="older-projects"
+            className="w-full max-w-6xl mx-auto pb-12"
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0, transition: { duration: 0.2 } }}
+            variants={containerVariants}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {legacyProjects.map((project) => (
+                <motion.div key={project.slug} variants={cardVariants}>
+                  <ProjectCard
+                    slug={project.slug}
+                    title={project.title}
+                    role={project.role}
+                    achievement={project.summary}
+                    year={project.year}
+                    company={project.company}
+                    imageSrc={project.imageSrc}
+                    imageAlt={project.imageAlt}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      <div className="flex justify-center pb-12">
+        <button
+          type="button"
+          onClick={() => setShowLegacy((prev) => !prev)}
+          aria-expanded={showLegacy}
+          aria-controls="older-projects"
+          className="px-8 py-3 bg-blue-600 border border-blue-600 rounded-md text-white font-semibold hover:bg-blue-900 transition-colors"
+        >
+          {showLegacy ? "Hide older projects" : "See older projects"}
+        </button>
       </div>
-    </motion.section>
+    </>
   );
 };
-
