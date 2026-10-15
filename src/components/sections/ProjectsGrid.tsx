@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ProjectCard } from "./ProjectCard";
+import { ProjectCard, ProjectCardPlaceholder } from "./ProjectCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { legacyProjects } from "@/data/projects/legacy";
 
@@ -35,16 +35,6 @@ const projects = [
     company: "Electronic Arts",
     imageSrc: "/images/ea-player-support.jpg",
     imageAlt: "EA Player Support project",
-  },
-  {
-    slug: "google-one-benefits",
-    title: "Google One Benefits",
-    role: "Design Lead",
-    achievement: "Increased engagement rate with new cards and grouped categories by 10%",
-    year: "2021",
-    company: "Google",
-    imageSrc: "/images/google-one-benefits.jpg",
-    imageAlt: "Google One Benefits project",
   },
 ];
 
@@ -88,6 +78,9 @@ export const ProjectsGrid = () => {
               <ProjectCard {...project} />
             </motion.div>
           ))}
+          <motion.div variants={cardVariants}>
+            <ProjectCardPlaceholder />
+          </motion.div>
         </div>
       </motion.section>
 
@@ -101,7 +94,7 @@ export const ProjectsGrid = () => {
             exit={{ opacity: 0, transition: { duration: 0.2 } }}
             variants={containerVariants}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {legacyProjects.map((project) => (
                 <motion.div key={project.slug} variants={cardVariants}>
                   <ProjectCard
@@ -111,8 +104,9 @@ export const ProjectsGrid = () => {
                     achievement={project.summary}
                     year={project.year}
                     company={project.company}
-                    imageSrc={project.imageSrc}
+                    imageSrc={project.thumbSrc}
                     imageAlt={project.imageAlt}
+                    variant="compact"
                   />
                 </motion.div>
               ))}

@@ -10,6 +10,8 @@ interface ProjectCardProps {
   imageSrc: string;
   imageAlt: string;
   slug: string;
+  // "compact" is the smaller 4:3 card used for older projects
+  variant?: "default" | "compact";
 }
 
 export const ProjectCard = ({
@@ -21,27 +23,31 @@ export const ProjectCard = ({
   imageSrc,
   imageAlt,
   slug,
+  variant = "default",
 }: ProjectCardProps) => {
+  const isCompact = variant === "compact";
+
   return (
     <Link href={`/projects/${slug}`} className="group">
       <article className="flex flex-col h-full bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-        <div className="relative w-full aspect-video bg-gray-100">
+        <div className={`relative w-full bg-gray-100 overflow-hidden ${isCompact ? "aspect-[4/3]" : "aspect-video"}`}>
           <Image
             src={imageSrc}
             alt={imageAlt}
             fill
+            sizes={isCompact ? "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" : undefined}
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
-        <div className="p-6 flex flex-col flex-grow">
+        <div className={`flex flex-col flex-grow ${isCompact ? "p-5" : "p-6"}`}>
           <div className="mb-2">
             <span className="text-base font-semibold text-blue-600">{role}</span>
           </div>
-          <h3 className="text-3xl font-semibold text-black mb-1 font-heading">{title}</h3>
+          <h3 className={`font-semibold text-black mb-1 font-heading ${isCompact ? "text-2xl" : "text-3xl"}`}>{title}</h3>
           <p className="text-base text-gray-700 mb-4 flex-grow">{achievement}</p>
-          <div className="flex items-center justify-between text-sm text-gray-600">
-            <span className="text-base font-regular text-gray-600">{year}</span>
-            <span className="text-base font-semibold text-blue-600">{company}</span>
+          <div className="flex items-center justify-between gap-4 text-sm text-gray-600">
+            <span className="text-base font-regular text-gray-600 whitespace-nowrap">{year}</span>
+            <span className="text-base font-semibold text-blue-600 text-right">{company}</span>
           </div>
         </div>
       </article>
@@ -49,3 +55,20 @@ export const ProjectCard = ({
   );
 };
 
+
+export const ProjectCardPlaceholder = () => {
+  return (
+    <article className="flex flex-col h-full bg-white border border-dashed border-gray-300 rounded-lg overflow-hidden">
+      <div className="relative w-full aspect-video bg-gray-100 flex items-center justify-center">
+        <span className="text-base font-semibold text-gray-400">New case study in progress</span>
+      </div>
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="mb-2">
+          <span className="text-base font-semibold text-blue-600">Design Lead</span>
+        </div>
+        <h3 className="text-3xl font-semibold text-black mb-1 font-heading">Coming Soon</h3>
+        <p className="text-base text-gray-700 mb-4 flex-grow">A new project is on its way. Check back soon for the full story.</p>
+      </div>
+    </article>
+  );
+};

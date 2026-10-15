@@ -6,8 +6,8 @@ import Image from "next/image";
 interface AnimatedProjectHeaderProps {
   title: string;
   subtitle?: string;
-  imageSrc: string;
-  imageAlt: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export const AnimatedProjectHeader = ({
@@ -32,21 +32,23 @@ export const AnimatedProjectHeader = ({
       </motion.div>
 
       {/* Hero Image */}
-      <motion.div 
-        className="relative w-full aspect-[16/8] bg-gray-100 rounded-lg overflow-hidden"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-      >
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-      </motion.div>
+      {imageSrc && (
+        <motion.div 
+          className="relative w-full aspect-[16/8] bg-gray-100 rounded-lg overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+        >
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? ""}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </motion.div>
+      )}
     </>
   );
 };

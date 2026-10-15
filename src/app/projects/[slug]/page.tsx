@@ -37,15 +37,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <article className="space-y-12">
             <AnimatedProjectHeader
               title={legacyProject.title}
-              subtitle={[legacyProject.role, legacyProject.company, legacyProject.year].filter(Boolean).join(" · ")}
-              imageSrc={legacyProject.imageSrc}
-              imageAlt={legacyProject.imageAlt}
+              subtitle={legacyProject.role}
             />
 
+            {/* Overview first, then the hero followed by the rest of the gallery */}
             <ProjectSection title="Overview">
               <BoldText text={legacyProject.description} />
+              <ContentRenderer
+                content={[
+                  { src: legacyProject.imageSrc, alt: legacyProject.imageAlt },
+                  ...(legacyProject.images ?? []),
+                ].map((image) => ({ type: "image" as const, ...image }))}
+                // Legacy mockups sit on a #eaeaea backdrop; a 4% lift blends it into the gray-100 page
+                className="brightness-[1.04]"
+              />
             </ProjectSection>
           </article>
+
+          {/* Back to top button */}
+          <div className="mt-12 flex justify-center">
+            <BackToTop />
+          </div>
         </main>
         <Footer />
       </div>
