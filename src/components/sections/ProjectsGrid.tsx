@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import { ProjectCard, ProjectCardPlaceholder } from "./ProjectCard";
+import { useEffect, useState } from "react";
+import { ProjectCard } from "./ProjectCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { legacyProjects } from "@/data/projects/legacy";
 
 const projects = [
+  {
+    slug: "ea-anti-cheat-platform",
+    title: "EA Anti-Cheat Platform",
+    role: "Design Lead",
+    achievement: "Unified analyst investigation and enforcement tooling", // placeholder
+    year: "2026",
+    company: "Electronic Arts",
+    imageSrc: "/images/ea-anti-cheat-hero.png",
+    imageAlt: "EA Anti-Cheat Platform project",
+  },
   {
     slug: "ea-omni-shopping",
     title: "EA Omni Shopping",
@@ -60,8 +70,36 @@ const cardVariants = {
   },
 };
 
+// Older projects stay open until the visitor closes them. The module variable keeps
+// them open instantly when navigating back within the site; sessionStorage keeps
+// them open across a refresh in the same tab.
+const LEGACY_OPEN_KEY = "older-projects-open";
+let rememberedShowLegacy = false;
+
 export const ProjectsGrid = () => {
-  const [showLegacy, setShowLegacy] = useState(false);
+  const [showLegacy, setShowLegacy] = useState(rememberedShowLegacy);
+
+  useEffect(() => {
+    try {
+      if (!rememberedShowLegacy && sessionStorage.getItem(LEGACY_OPEN_KEY) === "1") {
+        rememberedShowLegacy = true;
+        setShowLegacy(true);
+      }
+    } catch {
+      // Storage unavailable (e.g. private mode); fall back to in-memory only
+    }
+  }, []);
+
+  const toggleLegacy = () => {
+    const next = !showLegacy;
+    rememberedShowLegacy = next;
+    setShowLegacy(next);
+    try {
+      sessionStorage.setItem(LEGACY_OPEN_KEY, next ? "1" : "0");
+    } catch {
+      // Ignore storage errors
+    }
+  };
 
   return (
     <>
@@ -78,9 +116,6 @@ export const ProjectsGrid = () => {
               <ProjectCard {...project} />
             </motion.div>
           ))}
-          <motion.div variants={cardVariants}>
-            <ProjectCardPlaceholder />
-          </motion.div>
         </div>
       </motion.section>
 
@@ -93,7 +128,15 @@ export const ProjectsGrid = () => {
             animate="visible"
             exit={{ opacity: 0, transition: { duration: 0.2 } }}
             variants={containerVariants}
+            aria-labelledby="older-projects-heading"
           >
+            <motion.h2
+              id="older-projects-heading"
+              variants={cardVariants}
+              className="text-2xl md:text-3xl font-semibold text-black font-heading mb-8"
+            >
+              Older Projects
+            </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {legacyProjects.map((project) => (
                 <motion.div key={project.slug} variants={cardVariants}>
@@ -118,12 +161,12 @@ export const ProjectsGrid = () => {
       <div className="flex justify-center pb-12">
         <button
           type="button"
-          onClick={() => setShowLegacy((prev) => !prev)}
+          onClick={toggleLegacy}
           aria-expanded={showLegacy}
           aria-controls="older-projects"
           className="px-8 py-3 bg-blue-600 border border-blue-600 rounded-md text-white font-semibold hover:bg-blue-900 transition-colors"
         >
-          {showLegacy ? "Hide older projects" : "See older projects"}
+          {showLegacy ? "Close older projects" : "See older projects"}
         </button>
       </div>
     </>

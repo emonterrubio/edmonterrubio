@@ -54,21 +54,3 @@ export const ProjectCard = ({
     </Link>
   );
 };
-
-
-export const ProjectCardPlaceholder = () => {
-  return (
-    <article className="flex flex-col h-full bg-white border border-dashed border-gray-300 rounded-lg overflow-hidden">
-      <div className="relative w-full aspect-video bg-gray-100 flex items-center justify-center">
-        <span className="text-base font-semibold text-gray-400">New case study in progress</span>
-      </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="mb-2">
-          <span className="text-base font-semibold text-blue-600">Design Lead</span>
-        </div>
-        <h3 className="text-3xl font-semibold text-black mb-1 font-heading">Coming Soon</h3>
-        <p className="text-base text-gray-700 mb-4 flex-grow">A new project is on its way. Check back soon for the full story.</p>
-      </div>
-    </article>
-  );
-};

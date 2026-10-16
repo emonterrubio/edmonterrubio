@@ -37,12 +37,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <article className="space-y-12">
             <AnimatedProjectHeader
               title={legacyProject.title}
-              subtitle={legacyProject.role}
+              subtitle={legacyProject.subheader}
+              ctaLabel={legacyProject.detailsUrl ? "See details" : undefined}
+              ctaHref={legacyProject.detailsUrl}
             />
 
-            {/* Overview first, then the hero followed by the rest of the gallery */}
+            {/* Overview, then the info bar, then the hero followed by the rest of the gallery */}
             <ProjectSection title="Overview">
               <BoldText text={legacyProject.description} />
+              <ProjectMetadata
+                logo={legacyProject.logo}
+                role={legacyProject.role}
+                duration={legacyProject.duration}
+                platform={legacyProject.platform}
+                tools={legacyProject.tools}
+                toolsLabel="Prototyping Tools"
+              />
               <ContentRenderer
                 content={[
                   { src: legacyProject.imageSrc, alt: legacyProject.imageAlt },

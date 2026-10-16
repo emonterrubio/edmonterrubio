@@ -6,6 +6,7 @@ interface ProjectMetadataProps {
   duration?: string;
   platform?: string;
   tools?: string;
+  toolsLabel?: string;
 }
 
 export const ProjectMetadata = ({
@@ -14,20 +15,22 @@ export const ProjectMetadata = ({
   duration,
   platform,
   tools,
+  toolsLabel = "Tools",
 }: ProjectMetadataProps) => {
   return (
     <div className="w-full py-6 px-6  bg-white border border-gray-200 rounded-md">
       <div className="flex flex-col md:flex-row items-start gap-3 md:gap-5">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <div className="w-12 h-12 relative overflow-hidden">
+          {/* Square logos stay 48x48; wide wordmarks can stretch up to 96px */}
+          <div className="h-12 max-w-24 relative overflow-hidden">
             {logo ? (
               <Image
                 src={logo}
                 alt="Company logo"
                 width={48}
                 height={48}
-                className="object-cover"
+                className="h-12 w-auto max-w-24 object-contain"
               />
             ) : (
               <div className="w-12 h-12 bg-blue-600" />
@@ -70,7 +73,7 @@ export const ProjectMetadata = ({
             {tools && (
               <div className="hidden md:flex flex-col gap-0">
                 <div className="text-black text-lg md:text-xl font-semibold font-heading">
-                  Tools
+                  {toolsLabel}
                 </div>
                 <div className="text-black text-sm sm:text-base font-normal">
                   {tools}
@@ -83,7 +86,7 @@ export const ProjectMetadata = ({
           {tools && (
             <div className="flex md:hidden flex-col gap-0">
               <div className="text-black text-lg sm:text-xl font-semibold font-heading">
-                Tools
+                {toolsLabel}
               </div>
               <div className="text-black text-sm sm:text-base font-normal">
                 {tools}
