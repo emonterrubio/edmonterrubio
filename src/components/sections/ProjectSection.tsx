@@ -37,7 +37,7 @@ export const ProjectSection = ({
       viewport={{ once: true, margin: "-100px" }}
       variants={sectionVariants}
     >
-      <div className="space-y-2">
+      <div className="space-y-4">
         <h2 className="md:text-2xl text-xl font-semibold text-blue-600 font-heading">{title}</h2>
         {subheader && (
           <h3 className="md:text-4xl text-3xl font-semibold text-black pb-2 font-heading">{subheader}</h3>

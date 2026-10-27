@@ -210,6 +210,16 @@ export const LearningCard = (title: string, description: string, icon?: React.Re
 });
 
 /**
+ * Helper function to render any React node as a content block (e.g. a coded diagram)
+ * @param caption - Optional caption shown below, styled like image captions
+ */
+export const Custom = (node: React.ReactNode, caption?: string): ContentBlock => ({
+  type: 'custom',
+  node,
+  caption
+});
+
+/**
  * Shorthand helpers for common use cases
  */
 export const content = {

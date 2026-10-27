@@ -83,7 +83,7 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         // Image row (multiple images side-by-side)
         if (block.type === 'imageRow') {
           return (
-            <div key={index} className="grid grid-cols-2 gap-4 mt-6">
+            <div key={index} className="grid grid-cols-2 gap-4">
               {block.images.map((img, imgIndex) => (
                 <SectionImage
                   key={imgIndex}
@@ -113,14 +113,14 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         if (block.type === 'header') {
           const level = block.level || 4;
           const headerClass = level === 1
-            ? 'text-4xl font-bold text-black mt-8 mb-3 font-heading'
+            ? 'text-4xl font-bold text-black font-heading'
             : level === 2
-            ? 'text-3xl font-bold text-black mt-7 mb-2 font-heading'
+            ? 'text-3xl font-bold text-black font-heading'
             : level === 3 
-            ? 'text-2xl font-bold text-black mt-6 mb-2 font-heading'
+            ? 'text-2xl font-bold text-black font-heading'
             : level === 5
-            ? 'text-lg font-semibold text-black mt-4 mb-1 font-heading'
-            : 'text-xl font-semibold text-black mt-4 mb-2 font-heading';
+            ? 'text-lg font-semibold text-black font-heading'
+            : 'text-xl font-semibold text-black font-heading';
           
           if (level === 1) return <h1 key={index} className={headerClass}>{block.text}</h1>;
           if (level === 2) return <h2 key={index} className={headerClass}>{block.text}</h2>;
@@ -133,19 +133,19 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         if (block.type === 'headerWithText') {
           const level = block.level || 4;
           const headerClass = level === 1
-            ? 'text-4xl font-bold text-black mt-8 mb-2 font-heading'
+            ? 'text-4xl font-bold text-black font-heading'
             : level === 2
-            ? 'text-3xl font-bold text-black mt-7 mb-1.5 font-heading'
+            ? 'text-3xl font-bold text-black font-heading'
             : level === 3 
-            ? 'text-2xl font-bold text-black mt-6 mb-2 font-heading'
+            ? 'text-2xl font-bold text-black font-heading'
             : level === 5
-            ? 'text-lg font-semibold text-black mt-4 mb-0.5 font-heading'
-            : 'text-xl font-semibold text-black mt-4 mb-1 font-heading';
+            ? 'text-lg font-semibold text-black font-heading'
+            : 'text-xl font-semibold text-black font-heading';
           
           const HeaderTag = level === 1 ? 'h1' : level === 2 ? 'h2' : level === 3 ? 'h3' : level === 5 ? 'h5' : 'h4';
           
           return (
-            <div key={index} className="space-y-1">
+            <div key={index} className="space-y-2">
               <HeaderTag className={headerClass}>{block.header}</HeaderTag>
               <p className="text-base text-black">
                 <InlineBoldText text={block.text} />
@@ -158,23 +158,23 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         if (block.type === 'headerWithList') {
           const level = block.level || 4;
           const headerClass = level === 1
-            ? 'text-4xl font-bold text-black mt-8 mb-2 font-heading'
+            ? 'text-4xl font-bold text-black font-heading'
             : level === 2
-            ? 'text-3xl font-bold text-black mt-7 mb-1.5 font-heading'
+            ? 'text-3xl font-bold text-black font-heading'
             : level === 3 
-            ? 'text-2xl font-bold text-black mt-6 mb-2 font-heading'
+            ? 'text-2xl font-bold text-black font-heading'
             : level === 5
-            ? 'text-lg font-semibold text-black mt-4 mb-0.5 font-heading'
-            : 'text-xl font-semibold text-black mt-4 mb-1 font-heading';
+            ? 'text-lg font-semibold text-black font-heading'
+            : 'text-xl font-semibold text-black font-heading';
           
           const HeaderTag = level === 1 ? 'h1' : level === 2 ? 'h2' : level === 3 ? 'h3' : level === 5 ? 'h5' : 'h4';
           const ListTag = block.ordered ? 'ol' : 'ul';
           const listClass = block.ordered 
-            ? 'list-decimal list-inside space-y-1' 
+            ? 'list-decimal list-outside pl-6 space-y-1' 
             : 'list-disc list-inside space-y-1 ml-4';
           
           return (
-            <div key={index} className="space-y-1">
+            <div key={index} className="space-y-2">
               <HeaderTag className={headerClass}>{block.header}</HeaderTag>
               <ListTag className={listClass}>
                 {block.items.map((item, idx) => (
@@ -205,7 +205,7 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         if (block.type === 'list') {
           const ListTag = block.ordered ? 'ol' : 'ul';
           const listClass = block.ordered 
-            ? 'list-decimal list-inside space-y-1' 
+            ? 'list-decimal list-outside pl-6 space-y-1' 
             : 'list-disc list-inside space-y-2 ml-4';
           
           return (
@@ -222,7 +222,7 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         // Steps block (numbered steps with titles)
         if (block.type === 'steps') {
           return (
-            <div key={index} className="space-y-6 mt-6">
+            <div key={index} className="space-y-6">
               {block.steps.map((step, idx) => (
                 <div key={idx} className="space-y-0">
                   <h4 className="text-2xl font-semibold text-black font-heading">
@@ -285,7 +285,19 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
         if (block.type === 'learningCard') {
           return <LearningCard key={index} title={block.title} description={block.description} icon={block.icon} />;
         }
-        
+
+        // Custom React node (e.g. a coded diagram)
+        if (block.type === 'custom') {
+          return (
+            <div key={index} className="space-y-2 w-full">
+              {block.node}
+              {block.caption && (
+                <p className="text-sm text-gray-600 text-center italic">{block.caption}</p>
+              )}
+            </div>
+          );
+        }
+
         return null;
       })}
     </>

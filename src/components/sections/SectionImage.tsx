@@ -22,9 +22,30 @@ export const SectionImage = ({
   const imageStyle: React.CSSProperties = {};
   if (width) imageStyle.width = width;
   if (height) imageStyle.height = height;
+
+  const isPlaceholder = !src || src === "placeholder";
+
+  if (isPlaceholder) {
+    return (
+      <div className={`space-y-2 w-full ${className}`}>
+        <div
+          className="flex aspect-video w-full items-center justify-center rounded-lg bg-gray-200 px-6 text-center text-sm text-gray-500"
+          role="img"
+          aria-label={alt}
+        >
+          {alt}
+        </div>
+        {caption && (
+          <p className="text-sm text-gray-600 text-center italic">
+            {caption}
+          </p>
+        )}
+      </div>
+    );
+  }
   
   return (
-    <div className={`space-y-2 mt-6 w-full ${className}`}>
+    <div className={`space-y-2 w-full ${className}`}>
       <div className={`relative rounded-lg overflow-hidden ${padding ? 'p-6 bg-gray-100' : ''}`} style={width === '100%' ? { width: '100%' } : width ? { width } : undefined}>
         <Image
           src={src}

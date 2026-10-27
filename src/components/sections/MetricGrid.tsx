@@ -16,7 +16,7 @@ export const MetricGrid = ({ metrics, columns = 5 }: MetricGridProps) => {
   };
 
   return (
-    <div className={`grid ${gridCols[columns]} gap-2 mt-2`}>
+    <div className={`grid ${gridCols[columns]} gap-2`}>
       {metrics.map((metric, index) => (
         <MetricCard key={index} value={metric.value} label={metric.label} />
       ))}

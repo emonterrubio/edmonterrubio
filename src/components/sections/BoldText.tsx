@@ -13,7 +13,7 @@ export const BoldText = ({ text }: BoldTextProps) => {
         const parts = paragraph.split(/(\*\*[^*]+\*\*)/g);
         
         return (
-          <p key={pIndex} className={pIndex > 0 ? "mt-4" : ""}>
+          <p key={pIndex}>
             {parts.map((part, index) => {
               if (part.startsWith("**") && part.endsWith("**")) {
                 // Remove the ** markers and make it bold

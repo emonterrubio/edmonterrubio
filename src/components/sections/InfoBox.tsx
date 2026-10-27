@@ -8,11 +8,10 @@ interface InfoBoxProps {
 }
 
 export const InfoBox = ({ title, items, variant = "gray" }: InfoBoxProps) => {
-  // Background is always gray, only title color changes
   const titleColor = variant === "blue" ? "text-blue-600" : "text-gray-900";
 
   return (
-    <div className="p-6 rounded-lg bg-gray-50 border border-gray-200 space-y-1">
+    <div className="p-6 rounded-lg bg-white border border-gray-200 space-y-1">
       <h4 className={`text-2xl font-semibold ${titleColor} font-heading`}>{title}</h4>
       <ul className="space-y-0">
         {items.map((item, index) => (

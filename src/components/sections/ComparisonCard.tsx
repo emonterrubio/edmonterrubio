@@ -9,7 +9,7 @@ interface ComparisonCardProps {
 
 export const ComparisonCard = ({ before, after, impact }: ComparisonCardProps) => {
   return (
-    <div className="grid grid-cols-3 gap-4 mt-6">
+    <div className="grid grid-cols-3 gap-4">
       <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
         <h5 className="text-lg font-semibold text-blue-600 mb-1">Before</h5>
         <p className="text-gray-700">

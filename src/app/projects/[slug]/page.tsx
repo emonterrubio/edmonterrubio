@@ -147,7 +147,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Responsibilities */}
           {!project.comingSoon && project.responsibilities && project.responsibilities.length > 0 && (
             <ProjectSection title="Responsibilities">
-              <ul className="list-decimal list-inside space-y-1">
+              <ul className="list-decimal list-outside pl-6 space-y-1">
                 {project.responsibilities.map((responsibility, index) => (
                   <li key={index} className="text-base/6 text-black">
                     <InlineBoldText text={responsibility} />

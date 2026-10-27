@@ -16,7 +16,8 @@ export type ContentBlock =
   | { type: 'infoBox'; title: string; items: string[]; variant?: 'default' | 'blue' | 'gray' }
   | { type: 'infoBoxGrid'; boxes: Array<{ title: string; items: string[]; variant?: 'default' | 'blue' | 'gray' }>; columns?: 1 | 2 | 3 }
   | { type: 'comparison'; before: string; after: string; impact: string }
-  | { type: 'learningCard'; title: string; description: string; icon?: React.ReactNode };
+  | { type: 'learningCard'; title: string; description: string; icon?: React.ReactNode }
+  | { type: 'custom'; node: React.ReactNode; caption?: string };
 
 export interface CustomSection {
   title: string;
