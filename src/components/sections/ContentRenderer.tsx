@@ -20,7 +20,7 @@ export const ContentRenderer = ({ content, className = "" }: ContentRendererProp
   const processedContent: (ContentBlock | { type: 'calloutGroup'; blocks: ContentBlock[] })[] = [];
   let calloutGroup: ContentBlock[] = [];
   
-  content.forEach((block, index) => {
+  content.forEach((block) => {
     if (block.type === 'callout' && block.withBackground) {
       calloutGroup.push(block);
     } else {

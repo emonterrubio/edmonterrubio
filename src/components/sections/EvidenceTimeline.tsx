@@ -113,7 +113,7 @@ const rpPath = () => {
 const TimelineSvg = () => (
   <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full font-sans" role="img" aria-labelledby="evidence-timeline-title">
     <title id="evidence-timeline-title">
-      One account's ranked points, reports, detections, logins, notes, and enforcement on a shared 30-day timeline.
+      One account&apos;s ranked points, reports, detections, logins, notes, and enforcement on a shared 30-day timeline.
       Between August 3 and 10, rising reports, new detections, and logins from three countries converge into a system shadow ban on August 8; on October 23 a
       seven-day silent matchmaking timeout. A prior toxicity ban expired on July 28.
     </title>
