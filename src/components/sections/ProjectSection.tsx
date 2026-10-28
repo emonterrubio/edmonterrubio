@@ -38,9 +38,9 @@ export const ProjectSection = ({
       variants={sectionVariants}
     >
       <div className="space-y-4">
-        <h2 className="md:text-2xl text-xl font-semibold text-blue-600 font-heading">{title}</h2>
+        <h2 className="md:text-2xl text-xl font-semibold text-blue-600 font-heading tracking-tight">{title}</h2>
         {subheader && (
-          <h3 className="md:text-4xl text-3xl font-semibold text-black pb-2 font-heading">{subheader}</h3>
+          <h3 className="md:text-4xl text-3xl font-semibold text-black pb-2 font-heading tracking-tight">{subheader}</h3>
         )}
       </div>
       <div className={`text-base text-black leading-normal space-y-6 ${contentClassName}`}>

@@ -1,8 +1,6 @@
 import React from "react";
 import { Pointer, Lightbulb } from "lucide-react";
 import {
-  Image,
-  ImageRow,
   Text as TextBlock,
   HeaderWithList,
   HeaderWithText,
@@ -23,6 +21,10 @@ import { AuthoringFlow } from "@/components/sections/AuthoringFlow";
 import { ActionLadder } from "@/components/sections/ActionLadder";
 import { ReviewComparison } from "@/components/sections/ReviewComparison";
 import { RankedClimb } from "@/components/sections/RankedClimb";
+import { VettingSummary } from "@/components/sections/VettingSummary";
+import { AssistBoundary } from "@/components/sections/AssistBoundary";
+import { AiRoadmap } from "@/components/sections/AiRoadmap";
+import { WorkflowPath } from "@/components/sections/WorkflowPath";
 import { ProjectContent } from "./types";
 
 export const eaAntiCheatPlatform: ProjectContent = {
@@ -359,17 +361,65 @@ export const eaAntiCheatPlatform: ProjectContent = {
       subheader: "Protect the competitive circuit and correct the ladder",
       text: "A cheater in a competitive event is a reputational incident, not a routine case. Events draw about **5,000 signups**. Banned players return on alt accounts from the same machine, and a sanction alone leaves ill-gotten ranked points on the public ladder.",
       content: [
-        ImageRow([
-          { src: "placeholder", alt: "Event signup vetting", caption: "Check results before the event starts" },
-          { src: "placeholder", alt: "Ranked point adjustment", caption: "An auditable correction for the active season split" },
-        ]),
-        TextBlock("Vetting runs high-confidence checks on every signup and enforces the event ban list with **same-machine alt detection**. Pros stay tagged through a daily refresh, because pro status changes how a report is handled and who is informed. Results stay reviewable per event, and a player's competitive profile carries checks forward instead of repeating them."),
-        TextBlock("Ranked correction is designed once for two shooter titles. Adjusting points for the active season split keeps cheating gains off the ladder. Every adjustment is **audit-logged and shown to the player**, so a silent change does not look like a bug. Sanctioned players below the Masters threshold come off the public leaderboard."),
+        Custom(
+          <AnnotatedImage
+            src="/images/ea-anti-cheat-competitive-vetting.png"
+            alt="Competitive integrity page for the Apex Legends Split Qualifier: signup counts, check filters, and each signup's check result"
+            width={948}
+            height={990}
+            callouts={[
+              { x: 32.3, y: 6.8, title: "One view per event", text: "Each event has its own tab, with its game and start time up front." },
+              { x: 72.3, y: 13.3, title: "Results before the event", text: "Signups, ban list hits, same-machine alts, and pros, **counted at a glance**." },
+              { x: 35.7, y: 18.5, title: "Filter to what needs action", text: "One click narrows the list to a single check result." },
+              { x: 47.5, y: 66.1, title: "Why a signup was flagged", text: "The detail names the sanction behind each **ban list** hit." },
+              { x: 55.7, y: 70.1, title: "Alts point to their account", text: "A **same-machine alt** names the banned account it shares a machine with." },
+              { x: 75.1, y: 90.2, title: "Pros stay tagged", text: "Pro status stays on the player, so it changes how a report is handled." },
+              { x: 97.9, y: 29.7, title: "Correct from the row", text: "**Adjust** on any signup opens a ranked correction for that player." },
+            ]}
+          />,
+          "Signup checks for one event, run before it starts",
+        ),
+        Custom(<VettingSummary />, "Two events, the same checks, and the alts a ban list alone would miss"),
+        TextBlock("Vetting runs high-confidence checks on every signup and enforces the event ban list with **same-machine alt detection**, so a banned player can't return on a new account from the same machine. Pros stay tagged through a daily refresh, because pro status changes how a report is handled and who is informed. Results stay reviewable per event, and a player's competitive profile carries checks forward instead of repeating them."),
+        Custom(
+          <AnnotatedImage
+            src="/images/ea-anti-cheat-competitive-adjustment.png"
+            alt="Ranked adjustment form for Cryptfang above a list of recent ranked adjustments"
+            width={1250}
+            height={590}
+            callouts={[
+              { x: 17.8, y: 8.1, title: "The player, in context", text: "The correction starts from the signup row, with rank and current points shown." },
+              { x: 35.6, y: 24.7, title: "The ladder follows", text: "A negative change removes points, and the **active season ladder is re-ranked**." },
+              { x: 76.6, y: 13, title: "A note on the record", text: "The note is **shown on the player record**, so the correction never looks like a bug." },
+              { x: 86.1, y: 15.3, title: "Review, not apply", text: "The button opens a review, the same pattern as every enforcement action." },
+              { x: 46, y: 43.4, title: "Logged with a code", text: "Every adjustment lands in the list with its actor, **enforcement code**, and time." },
+              { x: 39.8, y: 57.3, title: "Manual and automated, together", text: "Analyst corrections sit beside ones from automated tools like **skyfall.bot**." },
+            ]}
+          />,
+          "A ranked correction, from the signup row to the log",
+        ),
+        Custom(
+          <AnnotatedImage
+            src="/images/ea-anti-cheat-competitive-adjust-dialog.png"
+            alt="Review dialog: Adjust ranked points for Cryptfang, with owner, enforcement code, title, reason, point change, and new score"
+            width={479}
+            height={362}
+            maxWidth={520}
+            callouts={[
+              { x: 75.6, y: 18.8, title: "Scope, restated", text: "Game, action, and player count, as in every enforcement review." },
+              { x: 46.2, y: 61.9, title: "The result, before it happens", text: "The **new score** is shown before the points move." },
+              { x: 65.4, y: 76, title: "What gets written", text: "A note on the player record and a row in the **audit**." },
+              { x: 72, y: 84.3, title: "Named, not OK", text: "The button says **Adjust points**, and the info icon marks a correction, not a ban." },
+            ]}
+          />,
+          "The review step for a ranked correction",
+        ),
+        TextBlock("Ranked correction is designed once for two shooter titles. Adjusting points for the active season split keeps cheating gains off the ladder, and the season ladder is re-ranked. Every adjustment is **written to the audit and noted on the player record**, so a silent change does not look like a bug. Sanctioned players below the Masters threshold come off the public leaderboard."),
         HeaderWithList("Key Capabilities", [
-          "**Bulk signup vetting** with automated high-confidence checks",
-          "**Alt-account detection** so an event ban is not defeated by a new account on the same machine",
-          "A per-event view of signups and check results before the event",
-          "An **auditable ranked correction**, including the migrated history of past adjustments",
+          "**Bulk signup vetting** against the current ban list, run before each event",
+          "**Same-machine alt detection**, so an event ban is not defeated by a new account",
+          "A **per-event view** of signups, check results, and pro tags",
+          "An **auditable ranked correction**, reviewed before it applies, including the migrated history of past adjustments",
         ], true, 3),
         HeaderWithText("Impact", "Target: **70% fewer analyst hours** per event of about 5,000 signups, and no confirmed cheater in a premier event.", 3),
       ],
@@ -379,14 +429,27 @@ export const eaAntiCheatPlatform: ProjectContent = {
       subheader: "Assist first, recommend second, automate only what is proven",
       text: "AI in Dashy follows a proven anti-cheat pattern. It assists, then recommends, then automates only high-confidence cases behind rules. **A human stays accountable for every sanction.** Each phase earns the trust the next one needs.",
       content: [
-        ImageRow([
-          { src: "placeholder", alt: "Case brief with citations", caption: "Every sentence in a summary cites its source record" },
-          { src: "placeholder", alt: "Behavior score and contributing signals", caption: "Confidence and the signals behind it, shown before anyone acts" },
-        ]),
+        Custom(
+          <AnnotatedImage
+            src="/images/ea-anti-cheat-ai-case-brief.png"
+            alt="Player Overview tab for Makoflux, opening with a case brief of five cited sentences labeled Draft only. Does not change standing."
+            width={1270}
+            height={450}
+            callouts={[
+              { x: 79.6, y: 43.1, title: "Draft only", text: "The label says it outright: the brief **does not change standing**." },
+              { x: 51, y: 55.3, title: "One sentence per source", text: "Season stats, detections, received and outgoing reports, and the latest note." },
+              { x: 52.3, y: 89.1, title: "Every sentence cites", text: "Each chip **opens its tab**: Ranked, Bans, Detections, Activity, or Notes." },
+              { x: 24.8, y: 42.5, title: "No record, no sentence", text: "Makoflux has no **ban-history rows**, so the brief has no ban sentence. It does not fill gaps." },
+              { x: 64, y: 32.9, title: "First thing on the profile", text: "The brief opens the **Overview** tab, above the player info it summarizes." },
+            ]}
+          />,
+          "The case brief: one cited sentence per source with a record",
+        ),
+        Custom(<AssistBoundary />, "The assist phase reads and drafts. Standing changes only through enforcement review."),
         Steps([
           {
             title: "Phase 1: Assist",
-            description: "Read-and-draft features only. A case brief summarizes bans, detections, reports, notes, and stats, and every sentence cites its source. Report triage ranks a queue. A rule described in words becomes a draft query that is never live until preview and review pass. Nothing in this phase changes a player's standing.",
+            description: "Read-and-draft features only. The case brief opens a player's Overview with one sentence for each source that has a record: season stats, ban history, detections, received reports, outgoing reports, and the latest player note. A source with no record is skipped, and each citation opens that tab. Report triage is a **read-only queue of 40 players**, ordered by received reports and then the newest report. It orders, it does not score. A rule written in words only fills the existing enforcement preview. It does not create a rule. Standing changes only when that preview goes through the existing review dialog and **an analyst confirms**.",
           },
           {
             title: "Phase 2: Recommend",
@@ -397,7 +460,7 @@ export const eaAntiCheatPlatform: ProjectContent = {
             description: "Proven, high-precision cases can move in delayed ban waves that an analyst samples and can pause or roll back. An investigation agent drafts a recommendation. It cannot issue the sanction. Appeal assist surfaces likely false positives first, and a human decides every appeal.",
           },
         ]),
-        Image("placeholder", "Phased AI roadmap", "Assist, then recommend, then automate, each gated on measured precision"),
+        Custom(<AiRoadmap />, "Assist, then recommend, then automate, each gated on measured precision"),
         HeaderWithList("Guardrails", [
           "**Human accountability.** No model output issues a sanction on its own.",
           "**Explainability.** Every score, flag, and summary shows the evidence behind it.",
@@ -413,14 +476,7 @@ export const eaAntiCheatPlatform: ProjectContent = {
       subheader: "Complete User Workflow",
       content: [
         TextBlock("The surfaces are one path, from noticing a problem to proving the decision:"),
-        List([
-          "**Monitor** the leaderboard and the lobby for anomalies and coordinated play",
-          "**Investigate** the account in one player picture, across every evidence source",
-          "**Decide** with the evidence, the history, and the confidence in view",
-          "**Enforce** through a previewed, proportionate action that reaches the game",
-          "**Audit** who did what, when, why, and which rule or recommendation was involved",
-        ], true),
-        Image("placeholder", "Monitor to audit workflow", "Monitor, investigate, decide, enforce, audit"),
+        Custom(<WorkflowPath />, "Monitor, investigate, decide, enforce, audit"),
         TextBlock("What was a reconstruction across tools becomes a **single workspace an analyst can defend**."),
       ],
     },
